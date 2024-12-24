@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        .address-form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .address-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .address-form input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .address-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .address-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="address-form">
+        <h2>Enter Your Address</h2>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" placeholder="Enter your address...">
+        <button onclick="searchAddress()">Search</button>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        // Function to initialize the map
+        function initMap() {
+            // Center the map at a default location (in this case, London)
+            var defaultLocation = { lat: 51.5074, lng: -0.1278 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: defaultLocation
+            });
+            // Store the map object in a global variable for later use
+            window.map = map;
+        }
+
+        // Function to search for the entered address
+        function searchAddress() {
+            var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('address').value;
+
+            // Use the Geocoder to convert the address to coordinates
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    // If the geocoding was successful, center the map at the location and add a marker
+                    var location = results[0].geometry.location;
+                    window.map.setCenter(location);
+                    new google.maps.Marker({
+                        map: window.map,
+                        position: location
+                    });
+                } else {
+                    // If there was an error with geocoding, display an error message
+                    console.error('Geocode was not successful for the following reason: ' + status);
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    </script>
+    <!-- Load the Google Maps JavaScript API with the async attribute -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+    <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+</body>
+</html>

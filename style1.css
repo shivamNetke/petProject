@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: lightgray;
+  }
+  
+  .dogs {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-gap: 20px; 
+  }
+  
+  .di {
+    height: 580px;
+    width: 292px;
+    padding: 10px;
+    background-color: darkgray;
+    border-radius: 10px;
+  }
+  .di:hover{
+    background-color: gray;
+  }
+
+  .di h2{
+    overflow: hidden;
+  }
+  
+  
+  .di img {
+    height: 400px;
+    width: 100%; 
+    border-radius: 10px;
+  }
+  .buy{
+    padding: 5px 20px;
+    background-color: #23ce23;
+    color: black;
+    border: 2px solid#23ce23;
+    text-decoration: none;
+    margin-right: 30px;
+    border-radius: 10px;
+
+
+}
+
+.buy:hover{
+    background-color: #20e220;
+    color: black;
+}

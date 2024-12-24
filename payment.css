@@ -1,0 +1,43 @@
+.payment {
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 100px;
+}
+.po {
+    padding: 20px;
+    height: auto;
+    width: 300px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    background-color: #f9f9f9; /* Added a background color */
+}
+#pay {
+    padding: 7px 14px;
+    background-color: #4CAF50; /* Changed button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    cursor: pointer; /* Change cursor to pointer */
+}
+#pay:hover {
+    background-color: #4ec554; /* Darker green on hover */
+}
+input {
+    padding: 7px 14px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    width: calc(100% - 50px);
+    margin-bottom: 10px;
+}
+.maindiv {
+    display: flex;
+    justify-content: space-around;
+}
+.address {
+    margin-top: 50px;
+}
+.footer .details a {
+    color: white;
+}

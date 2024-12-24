@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style2qr.css">
+    <link rel="stylesheet" href="./payment.css">
+
+</head>
+<body>
+    <!-- navbar starts -->
+    <nav class="navbar">
+        <div class="logo">Pet selling company</div>
+        <ul class="nav-links">
+            <li><a href="./about.html">ABOUT</a></li>
+            <li><a href="./mainIndex.html">HOME</a></li>
+        </ul>
+    </nav>
+    <!-- navbar ends -->
+
+    <!-- order details starts  -->
+    <div class="maindiv">
+        <div class="address">
+            <br>
+            <center>
+                <div class="po">
+                    <form id="orderForm" method="POST" action="http://localhost:3000/submit-order">
+                        <!-- pet name input (filled automatically) -->
+                        <h3>Pet Name</h3>
+                        <input type="text" id="pet-name" name="petName" placeholder="pet Name" readonly><br>
+                        <h3>Fill Your Details</h3>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required><br>
+                        <input type="text" id="pincode" name="pincode" placeholder="Pincode" required><br>
+                        <input type="text" id="address" name="address" placeholder="Address" required><br>
+                        <input type="text" id="number" name="number" placeholder="Phone Number" maxlength="10"  required><br>
+
+                        <button onclick="alert('Submitting details. Please wait...')" type="submit" id="pay">Submit</button>
+                    </form>
+                    
+                </div>
+            </center>
+        </div>
+        <div class="qr">
+            <center><h2>(Rs. 500)</h2></center>
+            <center><img src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=upi%3A%2F%2Fpay%3Fpa%3D9881930329%40axl%26pn%3Dshivam%20netke%26am%3D500%26cu%3DINR" alt="QR Code"></center>
+        </div>
+    </div>
+    <!-- order details ends -->
+
+    <!-- footer starts -->
+    <footer class="footer">
+        <div class="details">
+            <h2>Pet selling company</h2>
+            <a href="https://maps.app.goo.gl/k6drfhZZSAzmt65YA"><p>Address: Pimpalgoan Ujjaini, Shivacha Mala, Nagar, Ahmednagar, 414001</p></a>
+            <p>Phone: 98819303289</p>
+            <p>Email: netkeshivam@gmail.com</p>
+        </div>
+        <div class="follows">
+            <h2>Follow us on:</h2>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/netkeshivammmm._/"><img class="fi" src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_instagram-256.png" alt="Instagram"></a>   
+            <!-- LinkedIn -->
+            <a href="#"><img class="fi" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-256.png" alt="LinkedIn"></a>
+            <!-- Twitter -->
+            <a href="#"><img class="fi" src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-256.png" alt="Twitter"></a>
+        </div>
+    </footer>
+    <!-- footer ends -->
+
+    <script>
+        // pet name script start
+        // On page load, set the pet name from localStorage
+        window.addEventListener('load', function() {
+            const selectedpet = localStorage.getItem('selectedpet');
+            if (selectedpet) {
+                document.getElementById('pet-name').value = selectedpet;
+            }
+        });
+        // pet name script ends
+        function checkInputs() {
+            const petname = document.getElementById('pet-name').value;
+            const name = document.getElementById('name').value;
+            const pincode = document.getElementById('pincode').value;
+            const address = document.getElementById('address').value;
+            const number = document.getElementById('number').value;
+            const payButton = document.getElementById('pay');
+
+            if (pincode && address && number.length === 10) {
+                payButton.style.display = 'inline-block'; 
+            } else {
+                payButton.style.display = 'none';
+            }
+        }
+
+        document.getElementById('orderForm').addEventListener('input', function() {
+            localStorage.setItem('petname', document.getElementById('pet-name').value);
+            localStorage.setItem('name', document.getElementById('name').value);
+            localStorage.setItem('pincode', document.getElementById('pincode').value);
+            localStorage.setItem('address', document.getElementById('address').value);
+            localStorage.setItem('number', document.getElementById('number').value);
+            checkInputs();
+        });
+
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('petname')) {
+                document.getElementById('pet-name').value = localStorage.getItem('petname');
+            }
+            if (localStorage.getItem('name')) {
+                document.getElementById('name').value = localStorage.getItem('name');
+            }
+            if (localStorage.getItem('pincode')) {
+                document.getElementById('pincode').value = localStorage.getItem('pincode');
+            }
+            if (localStorage.getItem('address')) {
+                document.getElementById('address').value = localStorage.getItem('address');
+            }
+            if (localStorage.getItem('number')) {
+                document.getElementById('number').value = localStorage.getItem('number');
+            }
+            checkInputs();
+        });
+    </script>
+</body>
+</html>
