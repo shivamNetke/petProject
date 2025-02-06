@@ -43,7 +43,7 @@ app.post('/submit-order', (req, res) => {
     const { petName, name, pincode, address, number } = req.body;
 
     // Order details
-    const orderDetails = `Pet Name: ${petName}\nClient Name: ${name}\nPincode: ${pincode}\nAddress: ${address}\nMobile Number: ${number}\n----------------------\n`;
+    const orderDetails = `Pet Name: ${petName}\nClient Name: ${name}\nPincode: ${pincode}\nAddress: ${address}\nMobile Number: ${number}\n\n--------------------------------\n\n`;
 
     // Append order details to orders.txt
     fs.appendFile(ordersFilePath, orderDetails, (err) => {
